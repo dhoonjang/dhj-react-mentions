@@ -48,7 +48,7 @@ const getDataProvider = function(data, ignoreAccents) {
       const results = []
       for (let i = 0, l = data.length; i < l; ++i) {
         const display = data[i].display || data[i].id
-        if (display.search(query) >= 0 || getSubstringIndex(display, query, ignoreAccents) >= 0) {
+        if (getSubstringIndex(display, query, ignoreAccents) >= 0) {
           results.push(data[i])
         }
       }
@@ -199,6 +199,7 @@ class MentionsInput extends React.Component {
           onChange: this.handleChange,
           onSelect: this.handleSelect,
           onKeyDown: this.handleKeyDown,
+          onKeyUp: this.handleKeyUp,
           onBlur: this.handleBlur,
           onCompositionStart: this.handleCompositionStart,
           onCompositionEnd: this.handleCompositionEnd,
@@ -601,6 +602,19 @@ class MentionsInput extends React.Component {
       default: {
         return
       }
+    }
+  }
+
+  handleKeyUp = (ev) => {
+    // do nothing while a IME composition session is active
+    if (isComposing) return
+
+    // refresh suggestions queries
+    const el = this.inputElement
+    if (ev.target.selectionStart === ev.target.selectionEnd) {
+      this.updateMentionsQueries(el.value, ev.target.selectionStart)
+    } else {
+      this.clearSuggestions()
     }
   }
 
