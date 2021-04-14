@@ -48,7 +48,7 @@ const getDataProvider = function(data, ignoreAccents) {
       const results = []
       for (let i = 0, l = data.length; i < l; ++i) {
         const display = data[i].display || data[i].id
-        if (getSubstringIndex(display, query, ignoreAccents) >= 0) {
+        if (display.search(query) >= 0 || getSubstringIndex(display, query, ignoreAccents) >= 0) {
           results.push(data[i])
         }
       }
