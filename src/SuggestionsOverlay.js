@@ -152,7 +152,7 @@ class SuggestionsOverlay extends Component {
 
   handleMouseEnter = (index, ev) => {
     if (this.props.onMouseEnter) {
-      this.props.onMouseEnter(index)
+      // this.props.onMouseEnter(index)
     }
   }
 
