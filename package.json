@@ -1,6 +1,6 @@
 {
   "name": "dhj-react-mentions",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "React mentions input",
   "main": "dist/dhj-react-mentions.cjs.js",
   "module": "dist/dhj-react-mentions.esm.js",
